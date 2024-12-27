@@ -15,6 +15,9 @@ class StringCalculatorTest < Minitest::Test
 
     assert_equal 6, calculate("1\n2,3")
     assert_equal 274, calculate("1,5\n4, 2,   54\n   122   , 21 \n 11,54 ")
+
+    assert_equal 3, calculate("//;\n1;2")
+    assert_equal 301, calculate("//:\n1:4: 2:   54\n   122   : 21 : 11 \n32:54 ")
   end
 
   private

@@ -28,12 +28,28 @@ class StringCalculator
   end
 
   def process_string
-    replace_newline_with_comma
+    if @string.start_with?("//")
+      delimiter = extract_delimiter
+      numbers_string = extract_numbers_with_delimiter
+    else
+      delimiter = ','
+      numbers_string = @string
+    end
 
-    @string.split(',').map(&:to_i).sum
+    numbers_string = replace_newline_with_delimiter(numbers_string, delimiter)
+
+    numbers_string.split(delimiter).map(&:to_i).sum
   end
 
-  def replace_newline_with_comma
-    @string.gsub!("\n", ",")
+  def extract_delimiter
+    @string.match(/\/\/(.)\n/)[1]
+  end
+
+  def extract_numbers_with_delimiter
+    @string.split(/\/\/.\n/)[1]
+  end
+
+  def replace_newline_with_delimiter(numbers_string, delimiter)
+    numbers_string.gsub("\n", delimiter)
   end
 end
