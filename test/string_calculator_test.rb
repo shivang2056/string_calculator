@@ -4,8 +4,9 @@ require_relative '../lib/string_calculator'
 class StringCalculatorTest < Minitest::Test
 
   def test_calculate
-    assert_nil calculate, nil
-    assert_nil calculate(12), nil
+    assert_nil calculate
+    assert_nil calculate(12)
+    assert_equal calculate(''), 0
   end
 
   private
