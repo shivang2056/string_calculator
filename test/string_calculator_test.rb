@@ -18,6 +18,15 @@ class StringCalculatorTest < Minitest::Test
 
     assert_equal 3, add("//;\n1;2")
     assert_equal 301, add("//:\n1:4: 2:   54\n   122   : 21 : 11 \n32:54 ")
+
+    error = assert_raises(Exception) { add("1\n-2,3") }
+    assert_equal "negative numbers not allowed: -2", error.message
+
+    error = assert_raises(Exception) { add("//;\n-1;2;-3;4") }
+    assert_equal "negative numbers not allowed: -1, -3", error.message
+
+    error = assert_raises(Exception) { add("//:\n1:-4: 2:   -54\n   122   : -21 : 11 \n-32:54 ") }
+    assert_equal "negative numbers not allowed: -4, -54, -21, -32", error.message
   end
 
   private

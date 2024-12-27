@@ -7,6 +7,8 @@ class StringCalculator
 
         return 0 if string.empty?
 
+        raise_exception_if_negative_numbers_present(string)
+
         process_string(string)
       else
         return nil
@@ -39,6 +41,14 @@ class StringCalculator
 
     def replace_newline_with_delimiter(numbers_string, delimiter)
       numbers_string.gsub("\n", delimiter)
+    end
+
+    def raise_exception_if_negative_numbers_present(string)
+      negative_numbers = string.scan(/-\d+/)
+
+      raise Exception.new(
+        "negative numbers not allowed: #{negative_numbers.join(', ')}"
+      ) unless negative_numbers.empty?
     end
   end
 end
