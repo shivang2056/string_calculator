@@ -16,6 +16,6 @@ class StringCalculatorTest < Minitest::Test
   private
 
   def calculate(string = nil)
-    StringCalculator.calculate(string)
+    StringCalculator.new(string).calculate
   end
 end
