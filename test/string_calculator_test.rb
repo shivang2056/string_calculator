@@ -6,7 +6,11 @@ class StringCalculatorTest < Minitest::Test
   def test_calculate
     assert_nil calculate
     assert_nil calculate(12)
+
     assert_equal calculate(''), 0
+
+    assert_equal calculate('1'), 1
+    assert_equal calculate('1,5'), 6
   end
 
   private
