@@ -28,6 +28,12 @@ class StringCalculator
   end
 
   def process_string
+    replace_newline_with_comma
+
     @string.split(',').map(&:to_i).sum
+  end
+
+  def replace_newline_with_comma
+    @string.gsub!("\n", ",")
   end
 end
