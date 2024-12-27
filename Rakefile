@@ -1,5 +1,5 @@
 task default: %w[test]
 
 task :test do
-  ruby 'test/example_test.rb'
+  ruby 'test/string_calculator_test.rb'
 end
