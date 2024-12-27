@@ -7,10 +7,11 @@ class StringCalculatorTest < Minitest::Test
     assert_nil calculate
     assert_nil calculate(12)
 
-    assert_equal calculate(''), 0
+    assert_equal 0, calculate('')
 
-    assert_equal calculate('1'), 1
-    assert_equal calculate('1,5'), 6
+    assert_equal 1, calculate('1')
+    assert_equal 6, calculate('1,5')
+    assert_equal 306, calculate('1,5,4, 2,   54,   122   , 21 , 11,32,54 ')
   end
 
   private
