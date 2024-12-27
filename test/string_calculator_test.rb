@@ -3,22 +3,30 @@ require_relative '../lib/string_calculator'
 
 class StringCalculatorTest < Minitest::Test
 
-  def test_add
+  def test_add_for_non_strings_and_blank_strings
     assert_nil add
     assert_nil add(12)
 
     assert_equal 0, add('')
+  end
 
+  def test_add_for_comma_separated_string
     assert_equal 1, add('1')
     assert_equal 6, add('1,5')
     assert_equal 306, add('1,5,4, 2,   54,   122   , 21 , 11,32,54 ')
+  end
 
+  def test_add_for_comma_separated_string_with_newline
     assert_equal 6, add("1\n2,3")
     assert_equal 274, add("1,5\n4, 2,   54\n   122   , 21 \n 11,54 ")
+  end
 
+  def test_add_for_custom_delimiter_with_newline
     assert_equal 3, add("//;\n1;2")
     assert_equal 301, add("//:\n1:4: 2:   54\n   122   : 21 : 11 \n32:54 ")
+  end
 
+  def test_add_for_negative_numbers
     error = assert_raises(Exception) { add("1\n-2,3") }
     assert_equal "negative numbers not allowed: -2", error.message
 
